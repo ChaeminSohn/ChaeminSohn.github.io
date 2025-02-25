@@ -20,11 +20,11 @@ rtl                      : # true, false (default) # turns direction of the page
 title                    : "Chaemin Sohn's Dev Blog"
 title_separator          : "-"
 subtitle                 : # site tagline that appears below site title in masthead
-name                     : "Your Name"
-description              : "An amazing website."
+name                     : "Chaemin Sohn"
+description              : "안녕하세요 끊임없이 성장하는 개발자 손채민입니다"
 url                      : "https://ChaeminSohn.github.io"
 baseurl                  : # the subpath of your site, e.g. "/blog"
-repository               : # GitHub username/repo-name e.g. "mmistakes/minimal-mistakes"
+repository               : # GitHub username/repo-name e.g. "ChaeminSohn/ChaeminSohn.github.io"
 teaser                   : # path of fallback teaser image, e.g. "/assets/images/500x300.png"
 logo                     : # path of logo image to display in the masthead, e.g. "/assets/images/88x88.png"
 masthead_title           : # overrides the website title displayed in the masthead, use " " for no title
