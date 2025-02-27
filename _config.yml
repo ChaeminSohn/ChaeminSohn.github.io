@@ -115,13 +115,13 @@ analytics:
 author:
   name             : "Chaemin Sohn"
   avatar           : # path of avatar image, e.g. "/assets/images/bio-photo.jpg"
-  bio              : "안녕하세요 끊임없이 성장하는 개발자 손채민입니다."
+  bio              : "안녕하세요. 끊임없이 성장하는 개발자 손채민입니다."
   location         : "South Korea"
-  email            : "cmsohn20@naver.com"
+  email            : 
   links:
     - label: "Email"
       icon: "fas fa-fw fa-envelope-square"
-      url: "cmsohn20@naver.com"
+      url: "mailto:cmsohn20@gmail.com"
     - label: "Website"
       icon: "fas fa-fw fa-link"
       # url: "https://your-website.com"
@@ -227,7 +227,7 @@ sass:
 
 # Outputting
 permalink: /:categories/:title/
-timezone: # https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
+timezone: Asia/Seoul
 
 
 # Pagination with jekyll-paginate
@@ -289,17 +289,17 @@ category_archive:
 tag_archive:
   type: liquid
   path: /tags/
-# https://github.com/jekyll/jekyll-archives
-# jekyll-archives:
-#   enabled:
-#     - categories
-#     - tags
-#   layouts:
-#     category: archive-taxonomy
-#     tag: archive-taxonomy
-#   permalinks:
-#     category: /categories/:name/
-#     tag: /tags/:name/
+# https://github.com/jekyll/jekyll-archives 
+jekyll-archives:
+   enabled:
+     - categories
+     - tags
+   layouts:
+     category: archive-taxonomy
+     tag: archive-taxonomy
+   permalinks:
+    category: /categories/:name/
+    tag: /tags/:name/
 
 
 # HTML Compression
