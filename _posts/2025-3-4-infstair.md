@@ -1,0 +1,196 @@
+---
+layout: single
+title: "[Unity]무한의 계단"
+categories: coding
+tag: [Unity,C#]
+---
+
+# 게임 소개
+
+2015년에 출시되어 한때 엄청난 인기를 끌었던 게임이다. '오르기' 버튼과 '방향 전환' 단 두개의 버튼만으로 상당히 긴장감 넘치고 중독적인 모바일 아케이드 게임으로, 최대한 계단을 높이 올라가 최고 점수를 내는 것이 목표이다.
+
+{% include video id="0aZPZhgK7m0" provider="youtube" %}
+
+# 1. 캐릭터, 계단 오브젝트 생성
+
+![infiniteStairs_2]({{site.url}}/images/2025-3-4-infstair/infiniteStairs_2-1741093690756-3.PNG)
+
+무료 픽셀아트 에셋을 적절히 슬라이스 하여 캐릭터와 계단, 땅 오브젝트를 만들었다.
+
+[픽셀아트 유니티 에셋 스토어](https://assetstore.unity.com/packages/2d/characters/pixel-adventure-1-155360?aid=1011lwKEN){: .btn .btn--info}
+
+계단의 생성 및 관리는 게임매니저 스크립트에서 배열을 통해 관리한다.
+
+```c#
+//GameManager.cs
+public static GameManager instance; //싱글턴 패턴
+
+[Header("계단")]
+[Space(10)]
+public GameObject[] Stairs;
+public bool[] isTurn; //해당 계단에서 플레이어가 바라봐야 할 방향 True=Left, False=Right
+```
+
+# 2. 계단의 위치를 랜덤으로 생성
+
+우선, 계단의 상태를 시작 계단, 오른쪽 방향 계단, 왼쪽 방향 계단 3가지로 나눈다.
+
+계단의 방향 기준은 플레이어가 해당 계단에서 바라보게 될 방향을 의미한다.
+
+```c#
+//GameManager.cs
+private enum  State {Start, Left, Right};
+private State state = State.Start;
+```
+
+게임 시작 시 호출되는 InitStairs() 함수를 정의하여 계단의 위치를 차례대로 랜덤하게 이어준다.
+
+```c#
+//GameManager.cs
+private void InitStairs()
+    {
+        for (int i = 0; i < Stairs.Length; i++)
+        {
+            switch(state) {
+                case State.Start:
+                    Stairs[i].transform.position = startPostion;
+                    state = State.Right; //첫 계단은 무조건 오른쪽으로
+                    break;
+                 case State.Left:
+                    Stairs[i].transform.position = oldPosition + new Vector3(-0.75f, 0.5f, 0);
+                    isTurn[i] = true;
+                    break;
+                case State.Right:
+                    Stairs[i].transform.position = oldPosition + new Vector3(0.75f, 0.5f, 0);
+                    isTurn[i] = false;
+                    break;
+            }
+            oldPosition = Stairs[i].transform.position;
+            if(i != 0)
+            {
+                int ran = UnityEngine.Random.Range(0, 5);
+                if (ran < 2 && i < Stairs.Length - 1) {
+                    state = state == State.Left ? State.Right : State.Left;
+                }
+            }
+        }
+    }
+```
+
+게임 시작 시 랜덤하게 배치된 모습이다.
+
+![infiniteStairs_3]({{site.url}}/images/2025-3-4-infstair/infiniteStairs_3.PNG)
+
+# 3. 플레이어의 회전, 이동 구현
+
+2D 게임이므로 플레이어를 좌우로 뒤집는 방식으로 방향 전환을 시킬 수 있다.
+
+플레이어가 방향전환 상태인지 아닌지 알려주는 boolean 변수 isTurn 을 사용한다.
+
+```c#
+//Player.cs
+private void PlayerTurn()
+{
+    isTurn = isTurn == true ? false : true;
+    spriteRenderer.flipX = isTurn;
+}
+```
+
+게임 특성상 플레이어가 이동하는 거리는 항상 일정하므로 isTurn 값에 따라 방향만 전환해주면 된다.
+
+```c#
+//Player.cs
+private void MoveDirection()
+    {
+        if (isTurn)
+        {
+            oldPosition += new Vector3(-0.75f, 0.5f, 0);
+        }
+        else
+        {
+            oldPosition += new Vector3(0.75f, 0.5f, 0);
+        }
+        transform.position = oldPosition;
+        anim.SetTrigger("Move"); //애니메이션
+    }
+```
+
+# 4. 게임 오버, 무한 계단 생성
+
+플레이어가 계단에서 벗어날 경우 게임 오버 처리가 된다.
+
+플레이어가 올라갈 때마다 계단을 제대로 올라갔는지 확인하는 함수가 필요하다.
+
+```c#
+//Player.cs
+private bool isFailTurn()
+    {
+        bool result = false;
+        if (GameManager.instance.isTurn[turnCnt] != isTurn)
+        {
+            result = true;
+        }
+        turnCnt++;
+
+        if(turnCnt > GameManager.instance.Stairs.Length - 1)
+        {
+            turnCnt = 0;
+        }
+        return result;
+    }
+```
+
+플레이어가 지난 계단이 화면에서 사라질 때마다 위에서 다시 생성되야 한다.
+
+계단을 5번 이상 오른 경우, 플레이어가 움직일 때마다 아래 함수가 호출된다.
+
+```c#
+//GameManager.cs
+public void SpawnStair(int cnt) //플레이어 스크립트에서 호출되는 함수
+    {
+        int ran = UnityEngine.Random.Range(0, 5);
+        if (ran < 2)
+        {
+            state = state == State.Left ? State.Right : State.Left;
+        }
+        switch (state)
+        {
+            case State.Left:
+                Stairs[cnt].transform.position = oldPosition + new Vector3(-0.75f, 0.5f, 0);
+                isTurn[cnt] = true;
+                break;
+            case State.Right:
+                Stairs[cnt].transform.position = oldPosition + new Vector3(0.75f, 0.5f, 0);
+                isTurn[cnt] = false;
+                break;
+        }
+        oldPosition = Stairs[cnt].transform.position;
+    }
+```
+
+계단이 계속 생성되는 모습이다.
+
+![infiniteStairs_4]({{site.url}}/images/2025-3-4-infstair/infiniteStairs_4.PNG)
+
+# 5. UI 구현
+
+필요 UI : 플레이어의 이동, 회전, 그리고 게임 재시작 버튼
+
+게임 오버 화면
+
+현재 스코어 및 최고 스코어 표시
+
+![infiniteStairs_5]({{site.url}}/images/2025-3-4-infstair/infiniteStairs_5.PNG)
+
+# 6. 사운드 설정
+
+게임 BGM, 플레이어 이동 사운드, 게임 오버 사운드를 넣어주었다.
+[SE 유니티 에셋 스토어](https://assetstore.unity.com/packages/audio/sound-fx/rpg-essentials-sound-effects-free-227708?aid=1011lwKEN){: .btn .btn--info}
+[BGM 유니티 에셋 스토어](https://assetstore.unity.com/packages/audio/music/casual-game-bgm-5-135943?aid=1011lwKEN){: .btn .btn--info}
+
+# 7. 추가 업데이트 예정
+
+1. 안드로이드 빌드
+2. 코인 추가
+3. 키보드 컨트롤 추가
+4. 체력 게이지 추가
