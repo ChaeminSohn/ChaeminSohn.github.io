@@ -2,7 +2,7 @@
 layout: single
 title: "[Unity]무한의 계단"
 categories: coding
-tag: [Unity,C#]
+tag: [Unity, C#]
 ---
 
 # 게임 소개
@@ -185,6 +185,7 @@ public void SpawnStair(int cnt) //플레이어 스크립트에서 호출되는 �
 # 6. 사운드 설정
 
 게임 BGM, 플레이어 이동 사운드, 게임 오버 사운드를 넣어주었다.
+{% include video id="P2tB5UcOdus" provider="youtube" %}
 [SE 유니티 에셋 스토어](https://assetstore.unity.com/packages/audio/sound-fx/rpg-essentials-sound-effects-free-227708?aid=1011lwKEN){: .btn .btn--info}
 [BGM 유니티 에셋 스토어](https://assetstore.unity.com/packages/audio/music/casual-game-bgm-5-135943?aid=1011lwKEN){: .btn .btn--info}
 
