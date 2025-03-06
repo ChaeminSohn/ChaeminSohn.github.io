@@ -3,6 +3,10 @@ layout: single
 title: "[Unity]무한의 계단"
 categories: coding
 tag: [Unity, C#]
+toc: true
+author_profile: false
+sidebar:
+  nav: docs
 ---
 
 # 게임 소개
