@@ -29,11 +29,11 @@ excerpt: " "
 월드 스페이스는 실제 게임 세계가 만들어지는 좌표 공간이고, 모든 게임 오브젝트의 위치는 월드 스페이스
 좌표 공간으로 확인 가능하다.
 
-![image_3]({{site.url}}/images/2025-03-14-lookmouse/image_3.png)
+![image_3]({{site.url}}/images/2025-03-14-lookmouse/image_3.PNG)
 
 스크린 스페이스는 유저가 바라보는 게임 화면의 좌표 공간으로, 보통 게임 UI를 구현하기 위해 사용한다.
 
-![image_4]({{site.url}}/images/2025-03-14-lookmouse/image_4.png)
+![image_4]({{site.url}}/images/2025-03-14-lookmouse/image_4.PNG)
 
 게임 화면의 마우스 위치를 알아내는 것은 어렵지 않지만, 이는 월드 스페이스가 아닌 스크린의 좌표값이기 때문에
 플레이어 캐릭터가 이를 바라보게 하는 것은 불가능하다. 그렇다면 어떻게 마우스 위치를 파악하고 바라보게 할 수 있을까?
