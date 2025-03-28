@@ -29,7 +29,7 @@ for(int i = 1; i <= 9; i++)
 
 ## 결과
 
-![image1]({{site.url}}/images/2025-03-28-googoodan/googoodan1.PNG)
+![image1]({{site.url}}/images/2025-03-28-googoodan/googoodan_1.PNG)
 
 ## 가로로 출력
 
@@ -46,4 +46,4 @@ for(int i = 2; i <= 9; i++)
 
 ## 결과
 
-![image2]({{site.url}}/images/2025-03-28-googoodan/googoodan2.PNG)
+![image2]({{site.url}}/images/2025-03-28-googoodan/googoodan_2.PNG)
