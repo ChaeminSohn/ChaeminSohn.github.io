@@ -10,6 +10,29 @@ author_profile: false
 excerpt: " "
 ---
 
+# 구현 목표
+
+이중 반복문을 사용하여 2단부터 9단까지의 구구단을 출력하는 프로그램을 작성.
+
+## 세로로 출력
+
+```c#
+for(int i = 1; i <= 9; i++)
+{
+    for(int j = 2; j <= 9; j++)
+    {
+        Console.Write(j + " x " + i + " = " + i * j + "\t");
+    }
+    Console.WriteLine();
+}
+```
+
+## 결과
+
+![image1]({{site.url}}/images/2025-03-28-googoodan/googoodan1.PNG)
+
+## 가로로 출력
+
 ```c#
 for(int i = 2; i <= 9; i++)
 {
@@ -20,3 +43,7 @@ for(int i = 2; i <= 9; i++)
     Console.WriteLine();
 }
 ```
+
+## 결과
+
+![image2]({{site.url}}/images/2025-03-28-googoodan/googoodan2.PNG)
