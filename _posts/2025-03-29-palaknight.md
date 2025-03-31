@@ -180,6 +180,7 @@ public bool WeaponAttack(WeaponData weaponData)
 weaponData 또한 스크립터블 오브젝트로, 각 무기의 공격 애니메이션, 스프라이트, 사거리 같은 정보를 담고 있다.
 
 ![gif_2]({{site.url}}/images/2025-03-29-palaknight/playerAttack.gif)
+플레이어가 사용하는 공격 타입에 따라서 들고 있는 무기, 애니메이션 또한 변경된 것을 볼 수 있다.
 
 # 구현 결과
 
