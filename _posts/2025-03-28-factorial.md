@@ -1,6 +1,6 @@
 ---
 layout: single
-title: "[C#]배열을 사용한 합계 및 평균 계산"
+title: "[C#]팩토리얼 계산"
 categories: coding
 tag: [C#]
 toc: true
