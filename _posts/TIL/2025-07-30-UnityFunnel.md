@@ -28,7 +28,7 @@ excerpt: ""
 
 Unity 에디터 상단 메뉴에서 Window > Package Manager > Unity Registry > Analytics 검색 후 설치
 
-![image_1]({{site.url}}/images/2025-07/install.PNG)
+![image_1]({{site.url}}/images/2025-07/install.png)
 
 ---
 
@@ -38,11 +38,11 @@ Edit > Project Settings로 이동한 뒤 Services 선택.
 
 Unity 조직(Organization)을 선택하고, Create project ID 또는 Use an existing Unity project ID를 클릭해 현재 Unity 프로젝트를 클라우드 서비스에 연결.
 
-![image_2]({{site.url}}/images/2025-07/services.PNG)
+![image_2]({{site.url}}/images/2025-07/services.png)
 
 **Dashboard** 버튼을 클릭하여 유니티 프로젝트 대쉬보드로 이동 > 단축키 추가 > **Analytics** 추가
 
-![image_3]({{site.url}}/images/2025-07/dashboard.PNG)
+![image_3]({{site.url}}/images/2025-07/dashboard.png)
 
 ---
 
@@ -141,19 +141,19 @@ public class AnalyticsManager : MonoBehaviour
 
 프로젝트의 대시보드에서 **Analytics** > 이벤트 관리자로 이동
 
-![image_4]({{site.url}}/images/2025-07/eventManager.PNG)
+![image_4]({{site.url}}/images/2025-07/eventManager.png)
 
 Add New 버튼 클릭 > Custom Event > Add Custom Event 창 오픈
 
-![image_5]({{site.url}}/images/2025-07/addCustomEventBlank.PNG)
+![image_5]({{site.url}}/images/2025-07/addCustomEventBlank.png)
 
 코드에서 작성한 커스텀 이벤트의 이름과 똑같이 **Event Name** 작성. **Description**은 자유롭게 작성.
 
-![image_6]({{site.url}}/images/2025-07/addCustomEventFilled.PNG)
+![image_6]({{site.url}}/images/2025-07/addCustomEventFilled.png)
 
 **+ Assign Parameter** 버튼 클릭 > **+ Add new Parameter** > 추가한 매개변수 이름과 타입을 정확히 작성.
 
-![image_7]({{site.url}}/images/2025-07/addCustomParameter.PNG)
+![image_7]({{site.url}}/images/2025-07/addCustomParameter.png)
 
 모든 매개변수를 추가했다면, **Enable event** 옵션을 체크해주고 **Confirm** 버튼 클릭. 이제 이벤트 관리자에서 커스텀 이벤트를 받아들일 준비가 완료되었다.
 
@@ -161,18 +161,18 @@ Add New 버튼 클릭 > Custom Event > Add Custom Event 창 오픈
 
 이제 게임을 플레이하면 이벤트 브라우저에 이벤트 스택이 쌓이는 것을 볼 수 있다.
 
-![image_8]({{site.url}}/images/2025-07/eventBrowser.PNG)
+![image_8]({{site.url}}/images/2025-07/eventBrowser.png)
 
 이벤트 데이터가 쌓이기 시작헸으니, 이제 분석을 시작할 차례.
 
 Analytics > 퍼널 메뉴로 이동 > **+ Add New Funnel** 클릭
 
-![image_9]({{site.url}}/images/2025-07/addNewFunnel.PNG)
+![image_9]({{site.url}}/images/2025-07/addNewFunnel.png)
 
 이제 1단계부터 설계했던 이벤트들을 순서대로 추가하면 된다. **Add Step** 버튼을 통해 단계를 추가하고, **Add Parameter** 를 통해 단계의 조건을 추가할 수 있다.
 
-![image_10]({{site.url}}/images/2025-07/funnel.PNG)
+![image_10]({{site.url}}/images/2025-07/funnel.png)
 
 퍼널을 저장하면 아래와 같이 각 단계별 전환율과 이탈률을 한눈에 볼 수 있는 그래프가 생성된다. 단, 업데이트 되는 속도가 상당히 느리다는 단점이 있다..
 
-![image_11]({{site.url}}/images/2025-07/funnelTable.PNG)
+![image_11]({{site.url}}/images/2025-07/funnelTable.png)
